@@ -9,7 +9,17 @@ This is a simple hack to be able to store Google Oauth2 Credential information o
 
 ## INTRODUCTION
 
-This was used in a plain Servlet application, with no fancy libs.  
+This was used in a plain Servlet application, with no fancy libs.
+
+* Environment Variables
+```sh
+    export APP_NAME
+    export OAUTH_CLIENT_ID
+    export OAUTH_CLIENT_SECRET
+    export REDIS_HOST
+    export REDIS_PORT
+    export REDIS_NAME
+```
 
 * DoLogin.java
 
