@@ -4,9 +4,9 @@
   <groupId>com.github.feitnomore.googleoauth2.redisdatastore</groupId>
   <artifactId>googleoauth2-redisdatastore</artifactId>
   <packaging>jar</packaging>
-  <version>1.0-SNAPSHOT</version>
+  <version>1.0</version>
   <name>googleoauth2-redisdatastore</name>
-  <url>http://maven.apache.org</url>
+  <url>https://github.com/feitnomore/java-google-oauth2-redisdatastore/</url>
   <dependencies>
     <dependency>
       <groupId>com.google.apis</groupId>
