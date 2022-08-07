@@ -18,11 +18,13 @@
 package com.github.feitnomore.googleoauth2.redisdatastore.controllers;
 
 import java.util.List;
-import java.util.Arrays;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import com.google.api.services.oauth2.Oauth2;
 import com.google.api.client.http.HttpTransport;
-
 import com.google.api.client.json.gson.GsonFactory;
 import com.github.feitnomore.googleoauth2.redisdatastore.datastore.RedisDataStoreFactory;
 import com.github.feitnomore.googleoauth2.redisdatastore.repository.GoogleCredentialRepository;
@@ -40,13 +42,15 @@ public class Oauth2Controller {
     private static String APP_NAME = System.getenv("APP_NAME");
     private static String oauthClientId = System.getenv("OAUTH_CLIENT_ID");
     private static String oauthClientSecret = System.getenv("OAUTH_CLIENT_SECRET");
-
-    private static List<String> userScopes = Arrays.asList(
-            "https://www.googleapis.com/auth/userinfo.profile",
-            "https://www.googleapis.com/auth/userinfo.email"
-            );
+    private static String oauthScopesFiles = System.getenv("OAUTH_SCOPES_FILE");
 
     public static GoogleAuthorizationCodeFlow newFlow() throws IOException {
+
+        List<String> userScopes;
+
+        try (Stream<String> fileScopes = Files.lines(Paths.get(oauthScopesFiles))) {
+            userScopes = fileScopes.collect(Collectors.toList());
+        }
 
         GoogleCredentialRepository repository = new GoogleCredentialRepositoryImpl();
         DataStoreFactory dataStore = new RedisDataStoreFactory(repository);

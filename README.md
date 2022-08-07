@@ -13,14 +13,21 @@ This was used in a plain Servlet application, with no fancy libs.
 
 * Environment Variables
 ```sh
-    export APP_NAME
-    export OAUTH_CLIENT_ID
-    export OAUTH_CLIENT_SECRET
-    export REDIS_HOST
-    export REDIS_PORT
-    export REDIS_NAME
+    export APP_NAME="my-app-name"
+    export OAUTH_CLIENT_ID="my-oauth-client-id"
+    export OAUTH_CLIENT_SECRET="my-oauth-client-secret"
+    export OAUTH_SCOPES_FILE="scopes.txt"
+    export REDIS_HOST="XXX.XXX.XXX.XXX"
+    export REDIS_PORT="6379"
+    export REDIS_NAME="oauth2"
 ```
-
+  
+* scopes.txt
+```
+https://www.googleapis.com/auth/drive
+https://www.googleapis.com/auth/documents
+```
+  
 * DoLogin.java
 
 ```java
@@ -51,7 +58,7 @@ public class DoLogin extends AbstractAuthorizationCodeServlet {
     }
 }
 ```
-
+  
 * DoLoginCallback.java
 
 ```java
@@ -105,7 +112,7 @@ public class DoLoginCallback extends AbstractAuthorizationCodeCallbackServlet {
     }
 }
 ```
-
+  
 * DoLogout.java
 
 ```java
